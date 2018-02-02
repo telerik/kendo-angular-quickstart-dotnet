@@ -4,21 +4,23 @@
 
 <p *ngIf="!forecasts"><em>Loading...</em></p>
 
-<table class='table' *ngIf="forecasts">
-  <thead>
-    <tr>
-      <th>Date</th>
-      <th>Temp. (C)</th>
-      <th>Temp. (F)</th>
-      <th>Summary</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let forecast of forecasts">
-      <td>{{ forecast.dateFormatted }}</td>
-      <td>{{ forecast.temperatureC }}</td>
-      <td>{{ forecast.temperatureF }}</td>
-      <td>{{ forecast.summary }}</td>
-    </tr>
-  </tbody>
-</table>
+<kendo-grid 
+  [kendoGridBinding]="forecasts" 
+  [sortable]="true"
+  [filterable]="true">
+  <kendo-grid-column 
+    field="dateFormatted" 
+    format="{0:d}" 
+    title="Date"></kendo-grid-column>
+  <kendo-grid-column field="temperatureC" title="Temperature C">
+    <ng-template kendoGridCellTemplate let-dataItem>
+      {{ dataItem.temperatureC }}°C
+    </ng-template>
+  </kendo-grid-column>
+  <kendo-grid-column field="summary" title="Summary"></kendo-grid-column>
+  <kendo-grid-column field="temperatureF" title="Temperature F">
+      <ng-template kendoGridCellTemplate let-dataItem>
+        {{ dataItem.temperatureF }}°F
+      </ng-template>
+  </kendo-grid-column>
+</kendo-grid>
