@@ -17,7 +17,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ButtonsModule } from '@progress/kendo-angular-buttons';
 
 import { GridModule } from '@progress/kendo-angular-grid';
-import { DataService } from './fetch-data/data.service';
 
 
 @NgModule({
@@ -41,7 +40,7 @@ import { DataService } from './fetch-data/data.service';
       { path: 'fetch-data', component: FetchDataComponent },
     ])
   ],
-  providers: [DataService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

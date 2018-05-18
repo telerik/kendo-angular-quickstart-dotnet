@@ -1,32 +1,44 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Kendo.Mvc.UI;
-using Kendo.Mvc.Extensions;
-using System.Collections;
 
 namespace dotnet_angular.Controllers
 {
-
-    [Route("api/Products")]
-    public class SampleController : Controller
+    [Route("api/[controller]")]
+    public class SampleDataController : Controller
     {
-        [HttpGet]
-        public JsonResult GetProducts([DataSourceRequest]DataSourceRequest request)
+        private static string[] Summaries = new[]
         {
-            var result = Json(this.products.ToDataSourceResult(request));
-            return result;
+            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
+        };
+
+        [HttpGet("[action]")]
+        public IEnumerable<WeatherForecast> WeatherForecasts()
+        {
+            var rng = new Random();
+            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
+            {
+                DateFormatted = DateTime.Now.AddDays(index).ToString("d"),
+                TemperatureC = rng.Next(-20, 55),
+                Summary = Summaries[rng.Next(Summaries.Length)]
+            });
         }
 
-        private IEnumerable products = new[] {
-            new { ProductName = "Chai", CategoryName = "Beverages", QuantityPerUnit = "10 boxes x 20 bags" },
-            new { ProductName = "Chang", CategoryName = "Beverages", QuantityPerUnit = "20 boxes x 20 bags" },
-            new { ProductName = "Aniseed Syrup", CategoryName = "Condiments", QuantityPerUnit = "12 - 550 ml bottles" },
-            new { ProductName = "Chef Anton's Cajun Seasoning", CategoryName = "Condiments", QuantityPerUnit = "48 - 6 oz jars" },
-            new { ProductName = "Chef Anton's Gumbo Mix", CategoryName = "Condiments", QuantityPerUnit = "36 boxes" },
-            new { ProductName = "Grandma's Boysenberry Spread", CategoryName = "Condiments", QuantityPerUnit = "12 - 8 oz jars" },
-            new { ProductName = "Uncle Bob's Organic Dried Pears", CategoryName = "Produce", QuantityPerUnit = "12 - 1 lb pkgs." },
-            new { ProductName = "Northwoods Cranberry Sauce", CategoryName = "Condiments", QuantityPerUnit = "12 - 12 oz jars" },
-            new { ProductName = "Mishi Kobe Niku", CategoryName = "Meat/Poultry", QuantityPerUnit = "18 - 500 g pkgs." },
-            new { ProductName = "Ikura", CategoryName = "Seafood", QuantityPerUnit = "12 - 200 ml jars" }
-        };
+        public class WeatherForecast
+        {
+            public string DateFormatted { get; set; }
+            public int TemperatureC { get; set; }
+            public string Summary { get; set; }
+
+            public int TemperatureF
+            {
+                get
+                {
+                    return 32 + (int)(TemperatureC / 0.5556);
+                }
+            }
+        }
     }
 }
