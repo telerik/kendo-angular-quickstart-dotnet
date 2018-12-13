@@ -8,8 +8,8 @@ The project is based the [Angular Single-Page Application project template](http
 
 1. Clone this repository by using your favorite Git client or by executing `git clone https://github.com/telerik/kendo-angular-quickstart-dotnet.git`.
 1. Enter the project directory by running `cd kendo-angular-quickstart-dotnet`
-1. Run `dotnet restore` to install the project dependencies
 1. Run `SET ASPNETCORE_Environment=Development` (Windows) or `export ASPNETCORE_Environment=Development` (Linux, OSX)
+1. Run `dotnet build` to install the project dependencies and build the project.
 1. Start the development server with `dotnet run`
 1. Open http://localhost:5000
 
