@@ -2,7 +2,7 @@
 
 This repository holds the source code for the article on [Using with .NET Core](https://www.telerik.com/kendo-angular-ui/components/installation/dotnet-core/) with the Kendo UI for Angular suite.
 
-The project is based the [Angular Single-Page Application project template](https://docs.microsoft.com/en-us/aspnet/core/spa/angular?tabs=netcore-cli) version 2.1.
+The project is based on the [Angular Single-Page Application project template](https://docs.microsoft.com/en-us/aspnet/core/spa/angular?tabs=netcore-cli) version 2.1.
 
 ## Get Started
 
